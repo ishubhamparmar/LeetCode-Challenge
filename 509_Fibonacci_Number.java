@@ -26,10 +26,55 @@ Constraints:
  */
 
 //Beats 47% | Using Recursion
+// class Solution {
+//     public int fib(int n) {
+//         if(n<=1)
+//             return n;
+//         return fib(n-1)+fib(n-2);
+//     }
+// }
+
+//Beats 25% | Using dynamic programming - Memoization | TC- O(N) | SC- O(N) for Recursion Stack + O(N) for array
+// class Solution {
+//     public int fib(int n) {
+//         int [] dp = new int [n+1];
+//         Arrays.fill(dp, -1);
+//         if(n<=1)
+//             return n;
+//         if(dp[n]!=-1)   return dp[n];
+//         return dp[n] = fib(n-1) + fib(n-2); 
+//     }
+// }
+
+//Beats 100% | Using for loop | TC: O(N) | SC- O(N) + O(N) 
+// class Solution {
+//     public int fib(int n) {
+//         int [] dp = new int [n+1];
+//         Arrays.fill(dp, -1);
+//         dp[0] = 0;
+//         if(n>=1)
+//             dp[1] = 1;
+//         for(int i=2; i<=n; i++){
+//             dp[i] = dp[i-1] + dp[i-2];
+//         }
+//         return dp[n];
+//     }
+// }
+
+//Beats 100% | Using for loop | TC- O(N) | SC- O(N) Eliminating using array
 class Solution {
         public int fib(int n) {
-                if (n <= 1)
-                        return n;
-                return fib(n - 1) + fib(n - 2);
+                int prev2 = 0;
+                int prev = 1;
+                if (n == 0)
+                        return 0;
+                if (n == 1)
+                        return 1;
+                for (int i = 2; i <= n; i++) {
+                        int curi = prev2 + prev;
+                        prev2 = prev;
+                        prev = curi;
+                }
+                return prev;
         }
 }
