@@ -8,7 +8,7 @@ For most of the problems, Brute Force Approach, Better and Optimal, all the thre
 
 ## 🚀 About Me
 
-I'm a pre-final year Computer Science Engineering undergrad @ RGPV Bhopal. Currently Polishing DSA, Problem Solving and Web Development Skills.
+I'm a final year Computer Science Engineering undergrad @ RGPV Bhopal. Currently Polishing DSA, Problem Solving and Web Development Skills.
 
 ## 🛠 Skills
 
