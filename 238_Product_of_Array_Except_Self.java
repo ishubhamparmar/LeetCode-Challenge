@@ -1,5 +1,5 @@
 /*
- * 238. Product of Array Except Self
+ * 238. Product of Array Except Self | Medium
  * Problem Link: https://leetcode.com/problems/product-of-array-except-self/
  * 
  * Given an integer array nums, return an array answer such that answer[i] is
@@ -29,19 +29,42 @@
  */
 //Beats 100% | O(N)
 //Getting left multiplication, right multiplication and multiplying this both to get the result.
+// class Solution {
+//     public int[] productExceptSelf(int[] nums) {
+//         int ans[] = new int[nums.length];
+//         int flag = 1;
+//         for (int i = 0; i < nums.length; i++) {
+//             ans[i] = flag;
+//             flag = flag * nums[i];
+//         }
+//         flag = 1;
+//         for (int i = nums.length - 1; i >= 0; i--) {
+//             ans[i] = ans[i] * flag;
+//             flag *= nums[i];
+//         }
+//         return ans;
+//     }
+// }
+
+//Alternate Method | O(N) | Beats 100%
 class Solution {
     public int[] productExceptSelf(int[] nums) {
-        int ans[] = new int[nums.length];
-        int flag = 1;
+        int[] res = new int[nums.length];
+        int[] preProduct = new int[nums.length];
+        int[] sufProduct = new int[nums.length];
+        int pro = 1;
         for (int i = 0; i < nums.length; i++) {
-            ans[i] = flag;
-            flag = flag * nums[i];
+            preProduct[i] = pro;
+            pro = pro * nums[i];
         }
-        flag = 1;
+        pro = 1;
         for (int i = nums.length - 1; i >= 0; i--) {
-            ans[i] = ans[i] * flag;
-            flag *= nums[i];
+            sufProduct[i] = pro;
+            pro = pro * nums[i];
         }
-        return ans;
+        for (int i = 0; i < nums.length; i++) {
+            res[i] = preProduct[i] * sufProduct[i];
+        }
+        return res;
     }
 }
