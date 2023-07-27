@@ -23,28 +23,55 @@
  * Follow up: Could you come up with a one-pass algorithm using only constant
  * extra space?
  */
-//Beats 100% | O(N)
+//Beats 100% | O(N) | Counting sort technique
+// class Solution {
+//         public void sortColors(int[] nums) {
+//                 int countZero = 0;
+//                 int countOne = 0;
+//                 int countTwo = 0;
+//                 for (int i : nums) {
+//                         if (i == 0)
+//                                 countZero++;
+//                         else if (i == 1)
+//                                 countOne++;
+//                         else
+//                                 countTwo++;
+//                 }
+//                 for (int i = 0; i < countZero; i++) {
+//                         nums[i] = 0;
+//                 }
+//                 for (int i = countZero; i < countOne + countZero; i++) {
+//                         nums[i] = 1;
+//                 }
+//                 for (int i = countOne + countZero; i < countZero + countOne + countTwo; i++) {
+//                         nums[i] = 2;
+//                 }
+//         }
+// }
+
+//Beats 100%
 class Solution {
         public void sortColors(int[] nums) {
-                int countZero = 0;
-                int countOne = 0;
-                int countTwo = 0;
-                for (int i : nums) {
-                        if (i == 0)
-                                countZero++;
-                        else if (i == 1)
-                                countOne++;
-                        else
-                                countTwo++;
+                int n = nums.length;
+                int start = 0;
+                int end = n - 1;
+                int i = 0;
+                while (i <= end) {
+                        if (nums[i] == 0) {
+                                swap(nums, i, start);
+                                start++;
+                        } else if (nums[i] == 2) {
+                                swap(nums, i, end);
+                                end--;
+                                continue;
+                        }
+                        i++;
                 }
-                for (int i = 0; i < countZero; i++) {
-                        nums[i] = 0;
-                }
-                for (int i = countZero; i < countOne + countZero; i++) {
-                        nums[i] = 1;
-                }
-                for (int i = countOne + countZero; i < countZero + countOne + countTwo; i++) {
-                        nums[i] = 2;
-                }
+        }
+
+        public void swap(int[] arr, int i, int j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
         }
 }
