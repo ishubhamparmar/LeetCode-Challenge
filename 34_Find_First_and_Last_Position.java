@@ -29,31 +29,69 @@
  * -109 <= target <= 109
  */
 //Beats 100% | Binary Search
-class Solution {
-        public int[] searchRange(int[] nums, int target) {
-                int[] ans = { -1, -1 };
-                int low = 0;
-                int high = nums.length - 1;
+// class Solution {
+//         public int[] searchRange(int[] nums, int target) {
+//                 int[] ans = { -1, -1 };
+//                 int low = 0;
+//                 int high = nums.length - 1;
 
-                while (low <= high) {
-                        int mid = low + (high - low) / 2;
-                        if (nums[mid] < target) {
-                                low = mid + 1;
-                        } else if (nums[mid] > target) {
-                                high = mid - 1;
-                        } else if (nums[mid] == target) {
-                                int i = mid;
-                                while (mid > 0 && nums[mid] == nums[mid - 1]) {
-                                        mid--;
-                                }
-                                ans[0] = mid;
-                                while (i < (nums.length - 1) && nums[i] == nums[i + 1]) {
-                                        i++;
-                                }
-                                ans[1] = i;
-                                return ans;
-                        }
+//                 while (low <= high) {
+//                         int mid = low + (high - low) / 2;
+//                         if (nums[mid] < target) {
+//                                 low = mid + 1;
+//                         } else if (nums[mid] > target) {
+//                                 high = mid - 1;
+//                         } else if (nums[mid] == target) {
+//                                 int i = mid;
+//                                 while (mid > 0 && nums[mid] == nums[mid - 1]) {
+//                                         mid--;
+//                                 }
+//                                 ans[0] = mid;
+//                                 while (i < (nums.length - 1) && nums[i] == nums[i + 1]) {
+//                                         i++;
+//                                 }
+//                                 ans[1] = i;
+//                                 return ans;
+//                         }
+//                 }
+//                 return ans;
+//         }
+// }
+
+//Beats 100% | O(logN)
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int [] ans = {-1, -1};
+
+        ans[0] = search(nums, target, true);    
+        ans[1] = search(nums, target, false);    
+        return ans;
+    }
+    
+    public int search(int [] nums, int target, boolean findFirstIndex){
+        int low = 0;
+        int high = nums.length-1;
+        int ans = -1;
+        while(low <= high) {
+            int mid = low + (high - low) / 2;
+            if(nums[mid] > target){
+                high = mid-1;
+            }
+            else if(nums[mid] < target){
+                low = mid+1;
+            }
+            else {
+                //May be the potential answer
+                if(findFirstIndex) {
+                    ans = mid;
+                    high = mid-1;
                 }
-                return ans;
+                else {
+                    ans = mid;
+                    low = mid + 1;
+                }
+            }   
         }
+        return ans;
+    }
 }
