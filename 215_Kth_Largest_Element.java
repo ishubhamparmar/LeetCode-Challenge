@@ -1,5 +1,5 @@
 /*
-215. Kth Largest Element in an Array
+215. Kth Largest Element in an Array - Medium
 Problem Link: https://leetcode.com/problems/kth-largest-element-in-an-array/
 Given an integer array nums and an integer k, return the kth largest element in the array.
 Note that it is the kth largest element in the sorted order, not the kth distinct element.
@@ -14,8 +14,8 @@ Constraints:
 1 <= k <= nums.length <= 105
 -104 <= nums[i] <= 104
 */
-//Min-Heap | Beats 53%
 
+//Min-Heap | Beats 53%
 class Solution {
         public int findKthLargest(int[] nums, int k) {
                 PriorityQueue<Integer> pq = new PriorityQueue<>();
@@ -31,3 +31,17 @@ class Solution {
                 return pq.peek();
         }
 }
+
+// Beats 41%
+// class Solution {
+//     public int findKthLargest(int[] nums, int k) {
+//         PriorityQueue <Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+//         for(int x:nums){
+//             pq.offer(x);
+//         }
+//         for(int i=0; i<k-1; i++){
+//             pq.poll();
+//         }
+//     return pq.peek();
+//     }
+// }
