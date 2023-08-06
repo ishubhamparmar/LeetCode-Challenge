@@ -26,6 +26,14 @@
  * 1 <= n <= 45
  */
 
+//TLE
+// class Solution {
+//     public int climbStairs(int n) {
+//         if(n<=1)    return 1;
+//         return climbStairs(n-1) + climbStairs(n-2);
+//     }
+// }
+
 //Using dp | Beats 100%
 class Solution {
         public int climbStairs(int n) {
